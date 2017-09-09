@@ -1,10 +1,22 @@
 export const makeRandomHex = (size = 20) => {
-    const possible = 'abcdefghijklmnopqrstuvwxyz0123456789'
-    let text = ''
+    var text = ''
+    var possible = 'abcdefghijklmnopqrstuvwxyz0123456789'
 
-    for (let i = 0; i < size; i++) {
+    for (var i = 0; i < size; i++) {
         text += possible.charAt(Math.floor(Math.random() * possible.length))
     }
 
     return text
+}
+
+export const firstNotEmptyLine = (content = '') => {
+    const parts = content.split(/\r\n|\r|\n/)
+
+    for (let i = 0; i < parts.length; i++) {
+        if (parts[i].length) {
+            return parts[i]
+        }
+    }
+
+    return ''
 }

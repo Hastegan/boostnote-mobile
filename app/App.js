@@ -29,7 +29,10 @@ import SideBar from './components/SideBar'
 import NoteModal from './views/NoteModal'
 
 import AwsMobileAnalyticsConfig from './lib/AwsMobileAnalytics'
-import { makeRandomHex } from './lib/Strings'
+import {
+    makeRandomHex,
+    firstNotEmptyLine,
+} from './lib/Strings'
 
 import RNFetchBlob from 'react-native-fetch-blob'
 const fs = RNFetchBlob.fs
@@ -248,7 +251,7 @@ export default class App extends Component {
             })[0]
             fileList.push({
                 fileName: fileName,
-                content: content === '' ? 'Tap here and write something!' : content.split(/\r\n|\r|\n/)[0],
+                content: content === '' ? 'Tap here and write something!' : firstNotEmptyLine(content),
                 createdAt: filteredSettingFile.createdAt
             })
         }
